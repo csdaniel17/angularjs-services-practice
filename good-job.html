@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>good job - AngularJS - services</title>
+    <script src="angular.js"></script>
+    <script>
+
+    var app = angular.module('app', []);
+    app.factory('goodJob', function() {
+      return {
+        goodJob: function(subject) {
+          if (!subject) {
+            subject = 'bob';
+          }
+          console.log('good job, ' + subject + "!");
+        }
+      };
+    });
+
+    app.controller('MainController', function($scope, goodJob) {
+      $scope.name = 'bob';
+      $scope.goodJob = function() {
+        goodJob.goodJob($scope.name);
+      };
+    });
+
+    </script>
+  </head>
+  <body ng-app="app" ng-controller="MainController">
+    <input type="text" ng-model="name">
+    <button ng-click="goodJob()">Submit</button>
+  </body>
+</html>
